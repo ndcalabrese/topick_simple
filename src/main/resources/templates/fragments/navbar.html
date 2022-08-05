@@ -1,0 +1,11 @@
+<div th:fragment="navbar">
+    <nav>
+        <a>Topick</a>
+        <p>Text</p>
+        <form>
+            <button sec:authorize="isAuthenticated()">Log Out</button>
+            <button sec:authorize="isAnonymous()">Log In</button>
+            <button sec:authorize="isAnonymous()">Sign Up</button>
+        </form>
+    </nav>
+</div>
