@@ -4,14 +4,16 @@ import com.ndcalabrese.topick_simple.dto.UserRegistrationDto;
 import com.ndcalabrese.topick_simple.model.Role;
 import com.ndcalabrese.topick_simple.model.User;
 import com.ndcalabrese.topick_simple.repository.UserRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -50,6 +52,13 @@ public class UserServiceImpl implements UserService {
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public User getCurrentUser() {
+
+        return userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
+                .orElseThrow(() -> new UsernameNotFoundException("User name not found - " + SecurityContextHolder.getContext().getAuthentication().getName()));
     }
 
 

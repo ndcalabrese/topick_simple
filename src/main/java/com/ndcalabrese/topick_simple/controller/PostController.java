@@ -1,5 +1,6 @@
 package com.ndcalabrese.topick_simple.controller;
 
+import com.ndcalabrese.topick_simple.dto.PostDto;
 import com.ndcalabrese.topick_simple.model.Comment;
 import com.ndcalabrese.topick_simple.model.Post;
 import com.ndcalabrese.topick_simple.model.Subtopick;
@@ -12,11 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
 
 @Controller
 @AllArgsConstructor
+@RequestMapping("/api/posts")
 public class PostController {
 
     private final PostService postService;
@@ -24,14 +25,16 @@ public class PostController {
     private final UserService userService;
     private final SubtopickRepository subtopickRepository;
 
-    @PostMapping
-    public String createPost(@ModelAttribute Post post) {
-        postService.save(post);
+    @PostMapping("/create")
+    public String createPost(@ModelAttribute("post") PostDto postDto) {
+        postService.save(postDto);
 
-        return "redirect:/api/sub/{" + post.getSubtopick() + "}/view-post/{" + post.getPostId() + "}/comments";
+//        return "redirect:/api/posts/view-post/{" + postDto.getId() +
+//                "}/comments?PostCreationSuccess";
+        return "redirect:/";
     }
 
-    @GetMapping("/api/posts/create")
+    @GetMapping("/create")
     public String showCreatePostForm(Model model) {
         Post post = new Post();
         List<Subtopick> subtopicks = subtopickRepository.findAll();
@@ -42,17 +45,7 @@ public class PostController {
         return "create_post";
     }
 
-
-    @GetMapping("/")
-    public String getAllPosts(Model model, Principal principal) {
-
-        List<Post> posts = postService.getAllPosts();
-        model.addAttribute("posts", posts);
-
-        return "all_posts";
-    }
-
-    @GetMapping("/api/posts/by-subtopick/{id}")
+    @GetMapping("/by-subtopick/{id}")
     public String getPostsBySubtopick(@PathVariable Long id, Model model) {
 
         List<Post> posts = postService.getAllPostsBySubtopick(id);
@@ -62,7 +55,8 @@ public class PostController {
         return "all_posts";
     }
 
-    @GetMapping("/api/sub/{subtopickName}/view-post/{id}/comments")
+    // Get single post with comments
+    @GetMapping("/view-post/{id}/comments")
     public String getPostWithComments(@PathVariable Long id, Model model){
 
         Post post = postService.getPostById(id);

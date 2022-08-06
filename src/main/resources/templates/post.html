@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Topick</title>
+    <title>Topick | View Post</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,7 +15,7 @@
 <body>
 <div th:replace="fragments/navbar.html :: navbar"></div>
 <!-- Subtopick Creation Success Message -->
-<div th:if="${param.SubtopickCreationSuccess}">
+<div th:if="${param.PostCreationSuccess}">
     <div class="alert alert-info">Subtopick created successfully.</div>
 </div>
 
@@ -29,23 +29,33 @@
     <div class="alert alert-info">You are now logged out.</div>
 </div>
 
-<h1>Posts</h1>
+<h1 th:text="${post.getPostTitle()}"/>
+<p>
+    Posted by <span th:text="${post.getUser.getUsername()}"/>
+     on <span th:text="${post.getCreatedDate()}"/>
+</p>
+<p th:text="${post.getPostBody()}"/>
+
+<br>
+<hr>
+<br>
+<h1>Comments</h1>
 <table class="table table-dark">
     <thead>
     <tr>
         <th scope="col">Votes</th>
-        <th scope="col">Title</th>
         <th scope="col">Author</th>
         <th scope="col">Posted</th>
+        <th scope="col">Content</th>
     </tr>
     </thead>
     <tbody>
-        <tr th:each="post: ${posts}">
-            <td th:text="${post.getVoteCount()}"/>
-            <td th:text="${post.getPostTitle()}"/>
-            <td th:text="${post.getUser().getUsername()}"/>
-            <td th:text="${post.getCreatedDate()}"/>
-        </tr>
+    <tr th:each="comment: ${comments}">
+        <td th:text="${comment.getVoteCount()}"/>
+        <td th:text="${comment.getUser().getUsername()}"/>
+        <td th:text="${comment.getCreatedDate()}"/>
+        <td th:text="${comment.getCommentBody()}"/>
+    </tr>
     </tbody>
 </table>
 

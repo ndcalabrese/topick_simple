@@ -11,4 +11,6 @@ public interface SubtopickRepository extends JpaRepository<Subtopick, Long> {
 
     Optional<Subtopick> findByName(String subtopickName);
 
+    Optional<Subtopick> findById(Long id);
+
 }

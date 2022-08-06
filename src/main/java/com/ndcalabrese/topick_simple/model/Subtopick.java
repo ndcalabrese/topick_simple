@@ -31,9 +31,16 @@ public class Subtopick {
     @OneToMany(fetch = LAZY)
     private List<Post> posts;
 
-    private Instant createdDate = Instant.now();
+    private Instant createdDate;
 
     @ManyToOne(fetch = LAZY)
     private User user;
+
+    public Subtopick(String name, String description, User user) {
+        this.name = name;
+        this.description = description;
+        this.createdDate = Instant.now();
+        this.user = user;
+    }
 
 }

@@ -1,15 +1,14 @@
 package com.ndcalabrese.topick_simple.controller;
 
+import com.ndcalabrese.topick_simple.dto.SubtopickDto;
 import com.ndcalabrese.topick_simple.model.Post;
 import com.ndcalabrese.topick_simple.model.Subtopick;
+import com.ndcalabrese.topick_simple.repository.SubtopickRepository;
 import com.ndcalabrese.topick_simple.service.SubtopickService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,12 +18,13 @@ import java.util.List;
 public class SubtopickController {
 
     private final SubtopickService subtopickService;
+    private final SubtopickRepository subtopickRepository;
 
     @PostMapping("/create")
-    public String createSubtopick(@ModelAttribute Subtopick subtopick) {
-        subtopickService.save(subtopick);
+    public String createSubtopick(@ModelAttribute("subtopick") SubtopickDto subtopickDto) {
+        subtopickService.save(subtopickDto);
 
-        return "redirect:/api/posts/by-subtopick/{" + subtopick.getId() + "}";
+        return "redirect:/api/posts/by-subtopick{" + subtopickDto.getId() + "}/?SubtopickCreationSuccess";
     }
 
     @GetMapping("/create")
@@ -36,6 +36,16 @@ public class SubtopickController {
 
         return "create_subtopick";
     }
+
+//    @GetMapping("/{name}")
+//    public String getSubtopick(@PathVariable Long name, Model model) {
+//
+//        Subtopick subtopick = subtopickService.getSubtopickByName(name);
+//
+//        model.addAttribute("subtopick", subtopick);
+//
+//        return "subtopick";
+//    }
 
 
 }

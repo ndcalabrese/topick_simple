@@ -13,17 +13,53 @@
 </head>
 <body>
 <h1>Create Post</h1>
-
-<form action="#" th:action="@{/createPost}" th:object="${post}" method="post">
-    <p>Title: <input type="text" th:field="*{postTitle}" /></p>
-    <p>Text: <input type="text" th:field="*{postBody}" /></p>
-    <p>
-        Subtopick:
-        <option th:each="subtopick : ${subtopicks}"
-            th:value="${subtopick.getName()}"
-            th:text="${subtopick.getName()}"></option>
-    </p>
-    <button type="submit">Submit</button>
+<form action="#" th:action="@{/api/posts/create}" th:object="${post}" method="post">
+    <div class="form-group">
+        <label for="post-title">Post Title: </label>
+        <input type="text"
+               class="form-control"
+               id="post-title"
+               name="postTitle"
+               placeholder="Enter Post Title"
+               autofocus="autofocus">
+    </div>
+    <div class="form-group">
+        <label for="post-body">Post Body: </label>
+        <textarea type="text"
+                  class="form-control"
+                  id="post-body"
+                  name="postBody"
+                  placeholder="Enter Subtopick Description"
+                  autofocus="autofocus"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="post-url">Post URL: </label>
+        <input type="text"
+               class="form-control"
+               id="post-url"
+               name="url"
+               placeholder="Enter Post Title"
+               autofocus="autofocus">
+    </div>
+    <div class="form-group">
+        <label for="subtopick-list">Subtopick: </label>
+        <select name="subtopickId" id="subtopick-list">
+            <option th:each="subtopick : ${subtopicks}"
+                    th:value="${subtopick.getId()}"
+                    th:text="${subtopick.getName()}"></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <input type="submit"
+                       name="create-post-submit"
+                       id="create-post-submit"
+                       class="form-control btn btn-primary"
+                       value="Create Post"/>
+            </div>
+        </div>
+    </div>
 </form>
 
 

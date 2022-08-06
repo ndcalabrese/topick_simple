@@ -18,11 +18,15 @@ import java.util.Optional;
 public class SubtopickService {
 
     private final SubtopickRepository subtopickRepository;
+    private final UserServiceImpl userService;
 
     @Transactional
-    public void save(SubtopickDto subtopickDto) {
-        Subtopick subtopick = new Subtopick(subtopickDto.getName(),
-        subtopickDto.getDescription());
+    public SubtopickDto save(SubtopickDto subtopickDto) {
+        Subtopick subtopick = new Subtopick(subtopickDto.getName(), subtopickDto.getDescription(), userService.getCurrentUser());
+        Subtopick saved = subtopickRepository.save(subtopick);
+        subtopickDto.setId(saved.getId());
+
+        return subtopickDto;
     }
 
     @Transactional(readOnly = true)
@@ -35,6 +39,21 @@ public class SubtopickService {
             subtopick = optional.get();
         } else {
             throw new PostNotFoundException("Post not found with ID: " + id);
+        }
+
+        return subtopick;
+    }
+
+    @Transactional(readOnly = true)
+    public Subtopick getSubtopickByName(String name) {
+        Optional<Subtopick> optional = subtopickRepository.findByName(name);
+
+        Subtopick subtopick = null;
+
+        if (optional.isPresent()) {
+            subtopick = optional.get();
+        } else {
+            throw new PostNotFoundException("Post not found with ID: " + name);
         }
 
         return subtopick;

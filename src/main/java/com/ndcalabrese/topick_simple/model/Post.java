@@ -14,7 +14,6 @@ import static javax.persistence.FetchType.LAZY;
 @Data
 @Entity
 @Inheritance
-@AllArgsConstructor
 @NoArgsConstructor
 public class Post {
 
@@ -36,11 +35,22 @@ public class Post {
     @Nullable
     private String postBody;
 
-    private Instant createdDate = Instant.now();
+    private Instant createdDate;
 
     @Nullable
     private String url;
 
-    private Integer voteCount = 1;
+    private Integer voteCount;
+
+    // With URL
+    public Post(String postTitle, String postBody, Subtopick subtopick, String url, User user) {
+        this.postTitle = postTitle;
+        this.postBody = postBody;
+        this.subtopick = subtopick;
+        this.url = url;
+        this.user = user;
+        this.createdDate = Instant.now();
+        this.voteCount = 1;
+    }
 
 }

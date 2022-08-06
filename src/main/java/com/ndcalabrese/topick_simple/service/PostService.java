@@ -1,5 +1,6 @@
 package com.ndcalabrese.topick_simple.service;
 
+import com.ndcalabrese.topick_simple.dto.PostDto;
 import com.ndcalabrese.topick_simple.exception.PostNotFoundException;
 import com.ndcalabrese.topick_simple.exception.SubtopickNotFoundException;
 import com.ndcalabrese.topick_simple.model.Post;
@@ -26,9 +27,19 @@ public class PostService {
     private final PostRepository postRepository;
     private final SubtopickRepository subtopickRepository;
     private final UserRepository userRepository;
+    private final UserServiceImpl userService;
 
-    public void save(Post post) {
-        this.postRepository.save(post);
+    public PostDto save(PostDto postDto) {
+        Subtopick subtopick = subtopickRepository.findById(postDto.getSubtopickId())
+                .orElseThrow(
+                        () -> new SubtopickNotFoundException(postDto.getSubtopickId().toString())
+                );
+        Post post = new Post(postDto.getPostTitle(), postDto.getPostBody(), subtopick,
+                postDto.getUrl(), userService.getCurrentUser());
+        Post saved = postRepository.save(post);
+        postDto.setId(saved.getPostId());
+
+        return postDto;
     }
 
     @Transactional(readOnly = true)
