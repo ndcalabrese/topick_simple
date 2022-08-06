@@ -31,7 +31,7 @@ public class Comment {
 
 
 
-    private Instant createdDate;
+    private Instant createdDate = Instant.now();
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "userId", referencedColumnName = "userId")

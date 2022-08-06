@@ -36,7 +36,7 @@ public class Post {
     @Nullable
     private String postBody;
 
-    private Instant createdDate;
+    private Instant createdDate = Instant.now();
 
     @Nullable
     private String url;

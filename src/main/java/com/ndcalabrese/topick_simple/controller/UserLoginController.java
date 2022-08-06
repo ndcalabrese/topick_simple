@@ -13,9 +13,4 @@ public class UserLoginController {
         return "login";
     }
 
-//    @PostMapping("/login")
-//    public String logInUser() {
-//
-//        return "redirect:/login?SignupSuccess";
-//    }
 }

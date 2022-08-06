@@ -3,7 +3,6 @@ package com.ndcalabrese.topick_simple.controller;
 import com.ndcalabrese.topick_simple.model.Comment;
 import com.ndcalabrese.topick_simple.model.Post;
 import com.ndcalabrese.topick_simple.model.Subtopick;
-import com.ndcalabrese.topick_simple.model.User;
 import com.ndcalabrese.topick_simple.repository.SubtopickRepository;
 import com.ndcalabrese.topick_simple.service.CommentService;
 import com.ndcalabrese.topick_simple.service.PostService;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -44,11 +44,9 @@ public class PostController {
 
 
     @GetMapping("/")
-    public String getAllPosts(Model model) {
+    public String getAllPosts(Model model, Principal principal) {
 
         List<Post> posts = postService.getAllPosts();
-        
-
         model.addAttribute("posts", posts);
 
         return "all_posts";

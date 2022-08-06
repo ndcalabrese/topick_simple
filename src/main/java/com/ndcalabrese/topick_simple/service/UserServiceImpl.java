@@ -40,25 +40,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);
-        // START NEW
-        if(user == null) {
-            throw new UsernameNotFoundException("Invalid username or password.");
-        }
-        // END NEW
-        // START OLD
-//                .orElseThrow(
-//                        () -> new UsernameNotFoundException(username)
-//                );
-        // END OLD
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(
+                        () -> new UsernameNotFoundException(username)
+                );
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
     }
-
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//
-//        return new HashSet<GrantedAuthority>();
-//    }
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());

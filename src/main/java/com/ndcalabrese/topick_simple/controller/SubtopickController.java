@@ -20,14 +20,14 @@ public class SubtopickController {
 
     private final SubtopickService subtopickService;
 
-    @PostMapping
+    @PostMapping("/create")
     public String createSubtopick(@ModelAttribute Subtopick subtopick) {
         subtopickService.save(subtopick);
 
         return "redirect:/api/posts/by-subtopick/{" + subtopick.getId() + "}";
     }
 
-    @GetMapping("/api/posts/create")
+    @GetMapping("/create")
     public String showCreateSubtopickForm(Model model) {
 
         Subtopick subtopick = new Subtopick();
