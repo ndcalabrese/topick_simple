@@ -1,5 +1,6 @@
 package com.ndcalabrese.topick_simple.service;
 
+import com.ndcalabrese.topick_simple.dto.CommentDto;
 import com.ndcalabrese.topick_simple.exception.PostNotFoundException;
 import com.ndcalabrese.topick_simple.model.Comment;
 import com.ndcalabrese.topick_simple.model.Post;
@@ -19,17 +20,18 @@ public class CommentService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
     private final CommentRepository commentRepository;
+    private final UserServiceImpl userService;
 
-    public void save(Comment comment) {
+    public void save(CommentDto commentDto) {
         // Query the post repository for the specific post
-        Post post = postRepository.findById(comment.getPost().getPostId())
+        Post post = postRepository.findById(commentDto.getPostId())
                 .orElseThrow(
                         () -> new PostNotFoundException(
-                                comment.getPost().getPostId().toString()
+                                commentDto.getPostId().toString()
                         )
                 );
-
-        comment.setPost(post);
+//
+        Comment comment = new Comment(commentDto.getCommentBody(), post, userService.getCurrentUser());
 
         this.commentRepository.save(comment);
     }
