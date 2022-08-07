@@ -1,7 +1,6 @@
 package com.ndcalabrese.topick_simple.controller;
 
 import com.ndcalabrese.topick_simple.dto.SubtopickDto;
-import com.ndcalabrese.topick_simple.model.Post;
 import com.ndcalabrese.topick_simple.model.Subtopick;
 import com.ndcalabrese.topick_simple.repository.SubtopickRepository;
 import com.ndcalabrese.topick_simple.service.SubtopickService;
@@ -24,7 +23,7 @@ public class SubtopickController {
     public String createSubtopick(@ModelAttribute("subtopick") SubtopickDto subtopickDto) {
         subtopickService.save(subtopickDto);
 
-        return "redirect:/api/posts/by-subtopick{" + subtopickDto.getId() + "}/?SubtopickCreationSuccess";
+        return "redirect:/api/subtopicks/list";
     }
 
     @GetMapping("/create")

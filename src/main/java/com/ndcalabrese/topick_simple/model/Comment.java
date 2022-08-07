@@ -8,6 +8,8 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
@@ -44,5 +46,17 @@ public class Comment {
         this.createdDate = Instant.now();
         this.voteCount = 1;
     }
+
+    public String ConvertDate () {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy' 'HH:mm")
+                .withZone(ZoneId.systemDefault());
+
+        return formatter.format(this.createdDate);
+    }
+
+//    private String getPostTitle() {
+//
+//        return this.getPost().getPostTitle();
+//    }
 
 }

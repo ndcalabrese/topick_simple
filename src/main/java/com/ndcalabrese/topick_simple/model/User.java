@@ -9,6 +9,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -54,6 +56,13 @@ public class User {
         this.password = password;
         this.created = Instant.now();
         this.roles = roles;
+    }
+
+    public String ConvertDate () {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy")
+                .withZone(ZoneId.systemDefault());
+
+        return formatter.format(this.created);
     }
 
 }

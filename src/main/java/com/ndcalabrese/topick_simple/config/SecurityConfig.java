@@ -43,14 +43,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/",
-                        "/signup**",
-                        "/register**",
-                        "/api/posts/**",
-                        "/api/subtopicks/**",
-                        "/js/**",
-                        "/css/**",
-                        "/img/**").permitAll()
+//                .antMatchers("/",
+//                        "/signup**",
+//                        "/register**",
+//                        "/api/posts/by-subtopick/**",
+//                        "/api/posts/view-post/**",
+//                        "/api/subtopicks/list",
+//                        "/api/user/profile/**",
+//                        "/js/**",
+//                        "/css/**",
+//                        "/img/**").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/signup**").permitAll()
+                .antMatchers("/register**").permitAll()
+                .antMatchers("/api/posts/by-subtopick**").permitAll()
+                .antMatchers("/api/posts/view-post**").permitAll()
+                .antMatchers("/api/subtopicks/list**").permitAll()
+                .antMatchers("/api/user/profile**").permitAll()
+                .antMatchers("/api/user/profile/me").authenticated()
+                .antMatchers("/api/posts/create").authenticated()
+                .antMatchers("/api/subtopicks/create").authenticated()
+                .antMatchers("/api/posts/view-post/**/comments/create").authenticated()
+                .antMatchers("/js/**").permitAll()
+                .antMatchers("/css/**").permitAll()
+                .antMatchers("/img/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

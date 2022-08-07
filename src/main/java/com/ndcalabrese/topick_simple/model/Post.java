@@ -8,6 +8,8 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 import static javax.persistence.FetchType.LAZY;
 
@@ -51,6 +53,13 @@ public class Post {
         this.user = user;
         this.createdDate = Instant.now();
         this.voteCount = 1;
+    }
+
+    public String ConvertDate () {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy' 'HH:mm")
+                .withZone(ZoneId.systemDefault());
+
+        return formatter.format(this.createdDate);
     }
 
 }
