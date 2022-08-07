@@ -53,7 +53,7 @@ public class PostController {
 
         model.addAttribute("posts", posts);
 
-        return "all_posts";
+        return "subtopick";
     }
 
     // Get single post with comments

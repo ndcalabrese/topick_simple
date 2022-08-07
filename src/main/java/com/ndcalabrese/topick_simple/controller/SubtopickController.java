@@ -37,6 +37,14 @@ public class SubtopickController {
         return "create_subtopick";
     }
 
+    @GetMapping("/list")
+    public String listAllSubtopicks(Model model) {
+        List<Subtopick> subtopicks = subtopickService.getAllSubtopicks();
+        model.addAttribute("subtopicks", subtopicks);
+
+        return "all_subtopicks";
+    }
+
 //    @GetMapping("/{name}")
 //    public String getSubtopick(@PathVariable Long name, Model model) {
 //
