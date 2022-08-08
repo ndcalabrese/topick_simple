@@ -27,7 +27,6 @@ public class VoteService {
 
     @Transactional
     public void vote(VoteDto voteDto) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Post post = postRepository.findById(voteDto.getPostId())
                 .orElseThrow(() -> new PostNotFoundException("Post Not Found with ID - " + voteDto.getPostId()));
         Optional<Vote> voteByPostAndUser = voteRepository.findTopByPostAndUserOrderByVoteIdDesc(post, userService.getCurrentUser());
@@ -35,7 +34,7 @@ public class VoteService {
                 voteByPostAndUser.get().getVoteType()
                         .equals(voteDto.getVoteType())) {
             throw new TopickException("You have already "
-                    + voteDto.getVoteType() + "'d for this post");
+                    + voteDto.getVoteType() + "ed this post");
         }
         if (UPVOTE.equals(voteDto.getVoteType())) {
             post.setVoteCount(post.getVoteCount() + 1);

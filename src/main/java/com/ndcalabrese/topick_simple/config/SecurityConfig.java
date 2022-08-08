@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/posts/by-subtopick**").permitAll()
                 .antMatchers("/api/posts/view-post**").permitAll()
                 .antMatchers("/api/subtopicks/list**").permitAll()
-                .antMatchers("/api/user/profile**").permitAll()
+                .antMatchers("/api/user/profile/**").permitAll()
                 .antMatchers("/api/user/profile/me").authenticated()
                 .antMatchers("/api/posts/create").authenticated()
                 .antMatchers("/api/subtopicks/create").authenticated()
@@ -79,7 +79,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/?LogoutSuccess")
-                .permitAll();
+                .permitAll()
+                //new fix to 403 on js script for upvote/downvote
+                .and().csrf().disable().cors();
 
     }
 

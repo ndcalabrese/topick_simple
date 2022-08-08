@@ -3,6 +3,7 @@ package com.ndcalabrese.topick_simple.controller;
 import com.ndcalabrese.topick_simple.model.Comment;
 import com.ndcalabrese.topick_simple.model.Post;
 import com.ndcalabrese.topick_simple.model.User;
+import com.ndcalabrese.topick_simple.model.Vote;
 import com.ndcalabrese.topick_simple.repository.UserRepository;
 import com.ndcalabrese.topick_simple.service.CommentService;
 import com.ndcalabrese.topick_simple.service.PostService;
@@ -36,6 +37,9 @@ public class UserProfileController {
                 );
         List<Post> posts = postService.getAllPostsByUser(username);
         List<Comment> comments = commentService.getAllCommentsByUser(username);
+        //New
+        Vote vote = new Vote();
+        model.addAttribute("vote", vote);
 
         model.addAttribute("user", user);
         model.addAttribute("posts", posts);

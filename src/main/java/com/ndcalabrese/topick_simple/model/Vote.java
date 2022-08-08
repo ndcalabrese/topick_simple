@@ -33,6 +33,4 @@ public class Vote {
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     private User user;
 
-
-
 }
