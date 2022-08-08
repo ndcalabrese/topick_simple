@@ -37,7 +37,8 @@
                         <button type="submit">Upvote</button>
                     </form>
                     <div>
-                        <div th:text="${post.getVoteCount()}"/>
+<!--                        <div th:replace="fragments/votecount.html"></div>-->
+                        <div id="voteCounter" th:text="${post.getVoteCount()}"></div>
                     </div>
                     <form class="vote-down" data-id="" th:attr="data-id=${post.getPostId()}">
                         <button type="submit">Downvote</button>
