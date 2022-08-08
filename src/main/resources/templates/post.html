@@ -34,6 +34,9 @@
 <hr>
 <br>
 <h1>Comments</h1>
+<button type="button">
+    <a th:href="@{'/api/posts/view-post/{id}/comments/create'(id=${post.getPostId()})}">Cancel</a>
+</button>
 <div th:replace="fragments/listCommentsForPost.html"></div>
 
 <!-- JavaScript Bundle with Popper -->

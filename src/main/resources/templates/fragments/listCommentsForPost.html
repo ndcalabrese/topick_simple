@@ -10,16 +10,14 @@
             <td>
                 <ul>
                     <li class="list-group-item">
-                        <span th:text="${comment.getPost().getPostTitle()}"/>
+                        <div class="lead">
+                            Posted by by <a th:href="@{'/api/user/profile/{username}'(username=${comment.getUser().getUsername()})}"
+                                            th:text="'/user/' + ${comment.getUser().getUsername()}"/>
+                            on <span th:text="${comment.ConvertDate()}"/>
+                        </div>
                     </li>
                     <li class="list-group-item">
                         <span th:text="${comment.getCommentBody()}"/>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="lead">
-                            Posted by <span th:text="${comment.getUser().getUsername()}"/>
-                            on <span th:text="${comment.ConvertDate()}"/>
-                        </div>
                     </li>
                 </ul>
             </td>

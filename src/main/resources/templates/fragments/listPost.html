@@ -26,8 +26,9 @@
                     <li class="list-group-item">
                         Posted in <a class="lead"
                            th:href="@{'/api/posts/by-subtopick/{subtopickId}'(subtopickId=${post.getSubtopick().getId()})}"
-                           th:text="${post.getSubtopick().getName()}"/>
-                        by <span th:text="${post.getUser.getUsername()}"/>
+                           th:text="'/sub/' + ${post.getSubtopick().getName()}"/>
+                        by <a th:href="@{'/api/user/profile/{username}'(username=${post.getUser().getUsername()})}"
+                               th:text="'/user/' + ${post.getUser().getUsername()}"/>
                         on <span th:text="${post.ConvertDate()}"/>
                     </li>
                     <li class="list-group-item">

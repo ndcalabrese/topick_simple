@@ -1,6 +1,7 @@
 package com.ndcalabrese.topick_simple.service;
 
 import com.ndcalabrese.topick_simple.dto.UserRegistrationDto;
+import com.ndcalabrese.topick_simple.exception.TopickException;
 import com.ndcalabrese.topick_simple.model.Role;
 import com.ndcalabrese.topick_simple.model.User;
 import com.ndcalabrese.topick_simple.repository.UserRepository;
@@ -59,6 +60,18 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
                 .orElseThrow(() -> new UsernameNotFoundException("User name not found - " + SecurityContextHolder.getContext().getAuthentication().getName()));
+    }
+
+    @Transactional(readOnly = true)
+    public boolean checkIfEmailAndUsernameExists (UserRegistrationDto registrationDto) {
+        boolean userExists = false;
+
+        if (userRepository.existsByEmail(registrationDto.getEmail())
+                || userRepository.existsByUsername(registrationDto.getUsername())) {
+            userExists = true;
+        }
+
+        return userExists;
     }
 
 

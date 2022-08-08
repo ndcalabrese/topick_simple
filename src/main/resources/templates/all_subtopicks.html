@@ -28,7 +28,9 @@
     </thead>
     <tbody>
     <tr th:each="subtopick: ${subtopicks}">
-        <td th:text="${subtopick.getName()}"/>
+        <td><a class="lead"
+               th:href="@{'/api/posts/by-subtopick/{subtopickId}'(subtopickId=${subtopick.getId()})}"
+               th:text="'/sub/' + ${subtopick.getName()}"/></td>
         <td th:text="${subtopick.getDescription()}"/>
         <td th:text="${subtopick.ConvertDate()}"/>
     </tr>

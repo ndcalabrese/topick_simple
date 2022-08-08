@@ -28,7 +28,7 @@
                     <li class="list-group-item">
                         <a class="lead"
                            th:href="@{'/api/posts/by-subtopick/{subtopickId}'(subtopickId=${post.getSubtopick().getId()})}"
-                           th:text="${post.getSubtopick().getName()}"/>
+                           th:text="'/sub/' + ${post.getSubtopick().getName()}"/>
                     </li>
                     <li class="list-group-item">
                     <li class="list-group-item">

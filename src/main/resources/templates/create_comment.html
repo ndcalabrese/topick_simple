@@ -14,8 +14,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-<h1>Create Post</h1>
-<form action="#" th:action="@{/api/posts/view-post/{id}/comments/create(id=${post.getPostId()})}" th:object="${post}" method="post">
+<h1>Create Comment</h1>
+<form action="#" th:action="@{/api/posts/view-post/{id}/comments/create(id=${post.getPostId()})}" th:object="${comment}" method="post">
     <div class="form-group">
         <label for="comment-body">Comment: </label>
         <textarea type="text"
