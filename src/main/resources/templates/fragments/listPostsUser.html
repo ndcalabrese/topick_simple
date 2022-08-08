@@ -10,13 +10,13 @@
             <td>
                 <ul>
                     <li>
-                        <form class="vote-up" data-id="" th:attr="data-id=${post.getPostId()}">
+                        <form sec:authorize="isAuthenticated()" class="vote-up" data-id="" th:attr="data-id=${post.getPostId()}">
                             <button type="submit">Upvote</button>
                         </form>
                         <div>
                             <div id="voteCounter" th:text="${post.getVoteCount()}"></div>
                         </div>
-                        <form class="vote-down" data-id="" th:attr="data-id=${post.getPostId()}">
+                        <form sec:authorize="isAuthenticated()" class="vote-down" data-id="" th:attr="data-id=${post.getPostId()}">
                             <button type="submit">Downvote</button>
                         </form>
                     </li>
