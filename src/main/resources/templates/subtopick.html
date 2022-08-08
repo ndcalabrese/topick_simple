@@ -32,24 +32,8 @@
 </div>
 
 <h1>Posts</h1>
-<table class="table table-dark">
-    <thead>
-    <tr>
-        <th scope="col">Votes</th>
-        <th scope="col">Title</th>
-        <th scope="col">Author</th>
-        <th scope="col">Posted</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="post: ${posts}">
-        <td th:text="${post.getVoteCount()}"/>
-        <td th:text="${post.getPostTitle()}"/>
-        <td th:text="${post.getUser().getUsername()}"/>
-        <td th:text="${post.getCreatedDate()}"/>
-    </tr>
-    </tbody>
-</table>
+<div th:replace="fragments/listPosts.html"></div>
+
 
 
 <!-- JavaScript Bundle with Popper -->

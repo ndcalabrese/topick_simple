@@ -22,81 +22,9 @@
 <h4>Account created on <span th:text="${user.ConvertDate()}"/></h4>
 
 <h1>Posts by <span th:text="${user.getUsername()}"/></h1>
-<table class="table table-dark">
-    <thead>
-    <tr>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="post: ${posts}">
-        <td>
-            <ul>
-                <li>
-                    <form class="vote-up" data-id="" th:attr="data-id=${post.getPostId()}">
-                        <button type="submit">Upvote</button>
-                    </form>
-                    <div>
-<!--                        <div th:replace="fragments/votecount.html"></div>-->
-                        <div id="voteCounter" th:text="${post.getVoteCount()}"></div>
-                    </div>
-                    <form class="vote-down" data-id="" th:attr="data-id=${post.getPostId()}">
-                        <button type="submit">Downvote</button>
-                    </form>
-                </li>
-                <li class="list-group-item">
-                    <a class="lead"
-                       th:href="@{'/api/posts/view-post/{postId}/comments'(postId=${post.getPostId()})}"
-                       th:text="${post.getPostTitle()}"/>
-                </li>
-                <li class="list-group-item">
-                    <a class="lead"
-                       th:href="@{'/api/posts/by-subtopick/{subtopickId}'(subtopickId=${post.getSubtopick().getId()})}"
-                       th:text="${post.getSubtopick().getName()}"/>
-                </li>
-                <li class="list-group-item">
-                    <span th:text="${post.ConvertDate()}"/>
-                </li>
-            </ul>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div th:replace="fragments/listPostsUser.html"></div>
 <h1>Comments by <span th:text="${user.getUsername()}"/></h1>
-<table class="table table-dark">
-    <thead>
-    <tr>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="comment: ${comments}">
-        <td>
-            <ul>
-                <li>
-                    <form class="vote-up">
-                        <button type="submit">Upvote</button>
-                    </form>
-                    <div>
-                        <div th:text="${comment.getVoteCount()}"/>
-                    </div>
-                    <form class="vote-down">
-                        <button type="submit">Downvote</button>
-                    </form>
-                </li>
-                <li class="list-group-item">
-                    <a class="lead"
-                       th:href="@{'/api/posts/view-post/{postId}/comments'(postId=${comment.getPost().getPostId()})}"
-                       th:text="${comment.getPost().getPostTitle()}"/>
-                </li>
-                <li class="list-group-item">
-                    <span th:text="${comment.ConvertDate()}"/>
-                </li>
-            </ul>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div th:replace="fragments/listCommentsUser.html"></div>
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>

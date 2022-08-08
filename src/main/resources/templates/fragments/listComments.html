@@ -1,0 +1,31 @@
+<div th:fragment="listComments">
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="comment: ${comments}">
+            <td>
+                <ul>
+                    <li class="list-group-item">
+                        <a class="lead"
+                           th:href="@{'/api/posts/view-post/{postId}/comments'(postId=${comment.getPost().getPostId()})}"
+                           th:text="${comment.getPost().getPostTitle()}"/>
+                    </li>
+                    <li class="list-group-item">
+                        <span th:text="${comment.getCommentBody()}"/>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="lead">
+                            Posted by <span th:text="${comment.getUser().getUsername()}"/>
+                            on <span th:text="${comment.ConvertDate()}"/>
+                        </div>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

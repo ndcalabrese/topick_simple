@@ -13,6 +13,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/css/styles.css" th:href="@{/css/styles.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script rel="text/javascript" src="/js/vote.js"></script>
 </head>
 <body>
 <div th:replace="fragments/navbar.html :: navbar"></div>
@@ -32,24 +33,8 @@
 </div>
 
 <h1>Posts</h1>
-<table class="table table-dark">
-    <thead>
-    <tr>
-        <th scope="col">Votes</th>
-        <th scope="col">Title</th>
-        <th scope="col">Author</th>
-        <th scope="col">Posted</th>
-    </tr>
-    </thead>
-    <tbody>
-        <tr th:each="post: ${posts}">
-            <td th:text="${post.getVoteCount()}"/>
-            <td th:text="${post.getPostTitle()}"/>
-            <td th:text="${post.getUser().getUsername()}"/>
-            <td th:text="${post.getCreatedDate()}"/>
-        </tr>
-    </tbody>
-</table>
+<div th:replace="fragments/listPosts.html"></div>
+
 
 
 <!-- JavaScript Bundle with Popper -->
