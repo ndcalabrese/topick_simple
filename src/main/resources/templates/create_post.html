@@ -14,6 +14,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
+<div th:replace="fragments/navbar.html :: navbar"></div>
 <h1>Create Post</h1>
 <form action="#" th:action="@{/api/posts/create}" th:object="${post}" method="post">
     <div class="form-group">
