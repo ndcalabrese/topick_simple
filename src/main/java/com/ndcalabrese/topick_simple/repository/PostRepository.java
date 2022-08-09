@@ -10,8 +10,11 @@ import java.util.List;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
-
     List<Post> findAllBySubtopick(Subtopick subtopick);
+
+    List<Post> findAllByUserOrderByCreatedDateDesc(User user);
+
+    List<Post> findAllBySubtopickOrderByVoteCountDesc(Subtopick subtopick);
 
     List<Post> findAllByUser(User user);
 

@@ -1,0 +1,123 @@
+/* unvisited link */
+a:link {
+    text-decoration: none;
+    color: #2596be;
+}
+
+/* visited link */
+a:visited {
+    text-decoration: none;
+    color: #2596be;
+}
+
+body, nav {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #10131a;
+    padding-top: 65px;
+}
+
+.navbar-text {
+    color: #00fff2 !important;
+}
+
+.navbar-text:hover {
+    color: #FFFFFF !important;
+}
+
+.heading {
+    color: #00fff2;
+}
+
+/*spacing between posts*/
+/*.table {*/
+/*    border-collapse: separate;*/
+/*    border-spacing:0 10px;*/
+/*}*/
+
+.list-no-dec {
+    list-style-type: none;
+}
+
+.navbar-topick {
+    font-family: 'Pacifico', cursive;
+}
+
+
+.btn-upvote {
+    color: #5CDB95;
+}
+
+.btn-downvote {
+    color: #b1261d;
+}
+
+.bg-custom {
+    background-color: #10131a;
+}
+
+.listall-post-title {
+    font-size: 20px;
+}
+
+.listall-post-subtopick {
+    font-size: 12px;
+}
+
+.listall-post-posterdate {
+    font-size: 12px;
+}
+
+.listall-post-list {
+    margin-bottom: 20px;
+}
+
+.listsingle-post-title {
+    font-size: 20px;
+}
+
+.listsingle-post-body {
+    font-size: 16px;
+}
+
+.list-comment-post-title {
+    font-size: 12px;
+}
+
+.list-comment-info {
+    font-size: 12px;
+}
+
+.list-comment-body {
+    font-size: 16px;
+}
+
+.comments-header, .subtopick-header {
+    color: #00fff2
+}
+
+.listall-subtopick-subname {
+    font-size: 16px;
+    color: #00fff2;
+}
+
+.listall-subtopick-subdesc, .listall-subtopick-date {
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.table-header-clear {
+    background-color: #10131a !important;
+}
+
+#godown {
+    height: 60px;
+}
+#voteCounter {
+    color: #00fff2 !important;
+}
+
+
+

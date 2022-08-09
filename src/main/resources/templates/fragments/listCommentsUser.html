@@ -1,26 +1,22 @@
 <div th:fragment="listCommentsUser">
-    <table class="table table-dark">
-        <thead>
-        <tr>
-            <th></th>
-        </tr>
-        </thead>
+    <table class="table table-dark table-borderless">
         <tbody>
         <tr th:each="comment: ${comments}">
             <td>
                 <ul>
                     <li class="list-group-item">
-                        <a class="lead"
-                           th:href="@{'/api/posts/view-post/{postId}/comments'(postId=${comment.getPost().getPostId()})}"
-                           th:text="${comment.getPost().getPostTitle()}"/>
+                        <div class="lead list-comment-info">
+                            <a
+                                th:href="@{'/api/posts/view-post/{postId}/comments'(postId=${comment.getPost().getPostId()})}"
+                                th:text="${comment.getPost().getPostTitle()}"/>
+                            <p>Comment posted on <span th:text="${comment.ConvertDate()}"/></p>
+                        </div>
                     </li>
                     <li class="list-group-item">
-                        <span th:text="${comment.getCommentBody()}"/>
+                            <div class="list-comment-body">
+                                <span th:text="${comment.getCommentBody()}"/>
+                            </div>
                     </li>
-                    <li class="list-group-item">
-                        Posted on <span th:text="${comment.ConvertDate()}"/>
-                    </li>
-
                 </ul>
             </td>
         </tr>

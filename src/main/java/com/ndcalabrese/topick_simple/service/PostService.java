@@ -11,6 +11,7 @@ import com.ndcalabrese.topick_simple.repository.SubtopickRepository;
 import com.ndcalabrese.topick_simple.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -60,7 +61,8 @@ public class PostService {
     @Transactional(readOnly = true)
     public List<Post> getAllPosts() {
 
-        return postRepository.findAll();
+//        return postRepository.findAll();
+        return postRepository.findAll(Sort.by(Sort.Direction.DESC, "voteCount"));
     }
 
     @Transactional(readOnly = true)
@@ -70,7 +72,7 @@ public class PostService {
                         () -> new SubtopickNotFoundException(subtopickId.toString())
                 );
 
-        return postRepository.findAllBySubtopick(subtopick);
+        return postRepository.findAllBySubtopickOrderByVoteCountDesc(subtopick);
     }
 
     @Transactional(readOnly = true)
@@ -80,7 +82,8 @@ public class PostService {
                         () -> new UsernameNotFoundException(username)
                 );
 
-        return postRepository.findAllByUser(user);
+//        return postRepository.findAllByUser(user);
+        return postRepository.findAllByUserOrderByCreatedDateDesc(user);
     }
 
     public void deletePostById(long id) {

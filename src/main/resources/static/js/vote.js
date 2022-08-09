@@ -14,6 +14,7 @@ $(document).ready(function() {
             },
             error: function(err) {
                 console.log(err.messsage);
+                alert("You have already upvoted this post");
 
             }
         });
@@ -33,8 +34,8 @@ $(document).ready(function() {
             },
             error: function(err) {
                 console.log(err.messsage);
+                alert("You have already downvoted this post");
             }
         });
     });
-
 });

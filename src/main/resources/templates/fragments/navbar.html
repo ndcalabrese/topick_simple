@@ -1,28 +1,25 @@
 <div th:fragment="navbar">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-custom fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#" th:href="@{/}">Topick</a>
+            <a class="navbar-brand navbar-topick navbar-text" href="#" th:href="@{/}">Topick</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto just mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link navbar-text" aria-current="page" th:href="@{/}">Home</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link" th:href="@{/api/posts/create}">Create a Post</a>
+                        <a class="nav-link navbar-text" th:href="@{/api/posts/create}">Create a Post</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link" th:href="@{/api/subtopicks/create}">Create a Subtopick</a>
+                        <a class="nav-link navbar-text" th:href="@{/api/subtopicks/create}">Create a Subtopick</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/api/subtopicks/list}">View Subtopicks</a>
-                    </li>
-                    <li class="nav-item" sec:authorize="isAuthenticated()">
-                        <a class="nav-link" th:href="@{/logout}">Log Out</a>
+                        <a class="nav-link navbar-text" th:href="@{/api/subtopicks/list}">Subtopicks</a>
                     </li>
                     <li class="nav-item" sec:authorize="isAnonymous()">
                         <a class="nav-link" th:href="@{/login}">Log In</a>
@@ -30,8 +27,15 @@
                     <li class="nav-item" sec:authorize="isAnonymous()">
                         <a class="nav-link" th:href="@{/signup}">Sign Up</a>
                     </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link navbar-text" th:href="@{/api/user/profile/me}">My Posts</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a class="nav-link" th:href="@{/logout}">Log Out</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 </div>
+<div class="godown-60" id="godown"></div>
