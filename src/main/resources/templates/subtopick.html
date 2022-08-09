@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Topick</title>
+    <title th:text="'Topick | ' + ${subtopick.getName()}"></title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,7 +34,7 @@
     <div class="alert alert-info">You are now logged out.</div>
 </div>
 
-<h1>Posts</h1>
+<h6 class="subtopick-header" style="padding-left: 15px;">Subtopick: <span th:text="${subtopick.getName()}"></span></h6>
 <div th:replace="fragments/listPosts.html"></div>
 
 

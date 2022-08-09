@@ -33,13 +33,28 @@
                             </div>
                         </div>
                     </li>
+<!--                    <li class="col">-->
+<!--                        <div class="lead listall-post-subtopick">-->
+<!--                            Posted in <a-->
+<!--                                th:href="@{'/api/posts/by-subtopick/{subtopickId}'(subtopickId=${post.getSubtopick().getId()})}"-->
+<!--                                th:text="'/sub/' + ${post.getSubtopick().getName()}"/>-->
+<!--                            by <a th:href="@{'/api/user/profile/{username}'(username=${post.getUser().getUsername()})}"-->
+<!--                                 th:text="'/user/' + ${post.getUser().getUsername()}"/>-->
+<!--                            on <span th:text="${post.ConvertDate()}"/>-->
+<!--                        </div>-->
+<!--                        -->
+<!--                    </li>-->
                     <li class="col">
                         <div class="lead listall-post-subtopick">
                             Posted in <a
                                 th:href="@{'/api/posts/by-subtopick/{subtopickId}'(subtopickId=${post.getSubtopick().getId()})}"
                                 th:text="'/sub/' + ${post.getSubtopick().getName()}"/>
-                            by <a th:href="@{'/api/user/profile/{username}'(username=${post.getUser().getUsername()})}"
-                                 th:text="'/user/' + ${post.getUser().getUsername()}"/>
+                        </div>
+                    </li>
+                    <li class="col">
+                        <div class="lead listall-post-posterdate">
+                            Posted by <a th:href="@{'/api/user/profile/{username}'(username=${post.getUser().getUsername()})}"
+                                         th:text="'/user/' + ${post.getUser().getUsername()}"/>
                             on <span th:text="${post.ConvertDate()}"/>
                         </div>
                     </li>
@@ -47,7 +62,7 @@
                     </li>
                     <li class="col">
                         <div class="lead listsingle-post-body">
-                            <br>
+                            <br th:if="${post.getPostBody() != ''}">
                             <span th:text="${post.getPostBody()}"/>
                         </div>
                     </li>

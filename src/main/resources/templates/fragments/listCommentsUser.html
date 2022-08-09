@@ -1,9 +1,9 @@
 <div th:fragment="listCommentsUser">
-    <table class="table table-dark table-borderless">
+    <table class="table table-dark table-borderless table-hover">
         <tbody>
         <tr th:each="comment: ${comments}">
             <td>
-                <ul>
+                <ul class="list-no-dec">
                     <li class="list-group-item">
                         <div class="lead list-comment-info">
                             <a
@@ -13,7 +13,7 @@
                         </div>
                     </li>
                     <li class="list-group-item">
-                            <div class="list-comment-body">
+                            <div class="lead list-comment-body">
                                 <span th:text="${comment.getCommentBody()}"/>
                             </div>
                     </li>

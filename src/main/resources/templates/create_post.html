@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Topick</title>
+    <title>Topick | Create Post</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,57 +18,65 @@
 </head>
 <body>
 <div th:replace="fragments/navbar.html :: navbar"></div>
-<h1>Create Post</h1>
-<form action="#" th:action="@{/api/posts/create}" th:object="${post}" method="post">
-    <div class="form-group">
-        <label for="post-title">Post Title: </label>
-        <input type="text"
-               class="form-control"
-               id="post-title"
-               name="postTitle"
-               placeholder="Enter post title"
-               autofocus="autofocus">
-    </div>
-    <div class="form-group">
-        <label for="post-body">Post Body: </label>
-        <textarea type="text"
-                  class="form-control"
-                  id="post-body"
-                  name="postBody"
-                  placeholder="Enter post content"
-                  autofocus="autofocus"></textarea>
-    </div>
-    <div class="form-group">
-        <label for="post-url">(Optional) Post URL: </label>
-        <input type="text"
-               class="form-control"
-               id="post-url"
-               name="url"
-               placeholder="Enter URL"
-               autofocus="autofocus">
-    </div>
-    <div class="form-group">
-        <label for="subtopick-list">Subtopick: </label>
-        <select name="subtopickId" id="subtopick-list">
-            <option th:each="subtopick : ${subtopicks}"
-                    th:value="${subtopick.getId()}"
-                    th:text="${subtopick.getName()}"></option>
-        </select>
-    </div>
-    <div class="form-group">
-        <div class="row">
-            <div class="col-sm-6 col-sm-offset-3">
-                <input type="submit"
-                       name="create-post-submit"
-                       id="create-post-submit"
-                       class="form-control btn btn-primary"
-                       value="CreatePost"/>
+<div style="text-align: center;">
+    <h4 class="form-title">Create Post</h4>
+</div>
+<div class="container col-sm-6">
+    <div class="row">
+        <form action="#" th:action="@{/api/posts/create}" th:object="${post}" method="post">
+            <div class="form-group form-outline mb-4">
+                <label class="form-header" for="post-title">Post Title </label>
+                <input type="text"
+                       class="form-control"
+                       id="post-title"
+                       name="postTitle"
+                       placeholder="Enter post title"
+                       autofocus="autofocus"
+                       required>
             </div>
-        </div>
+            <div class="form-group form-outline mb-4">
+                <label class="form-header" for="post-body">Post Body </label>
+                <textarea type="text"
+                          class="form-control"
+                          id="post-body"
+                          name="postBody"
+                          placeholder="Enter post content"
+                          autofocus="autofocus"></textarea>
+            </div>
+            <div class="form-group form-outline mb-4">
+                <label class="form-header" for="post-url">(Optional) Post URL </label>
+                <input type="text"
+                       class="form-control"
+                       id="post-url"
+                       name="url"
+                       placeholder="Enter URL"
+                       autofocus="autofocus">
+            </div>
+            <div class="form-group form-outline mb-4">
+                <div class="d-flex flex-column align-items-center">
+                    <label class="form-header" for="subtopick-list">Subtopick&nbsp;</label>
+                    <select name="subtopickId" id="subtopick-list">
+                        <option th:each="subtopick : ${subtopicks}"
+                                th:value="${subtopick.getId()}"
+                                th:text="${subtopick.getName()}"></option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="d-flex justify-content-center">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <input type="submit"
+                               name="create-post-submit"
+                               id="create-post-submit"
+                               class="form-control btn btn-primary"
+                               value="Create Post"/>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-</form>
-
-
+</div>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>

@@ -18,8 +18,11 @@
 </head>
 <body>
 <div th:replace="fragments/navbar.html :: navbar"></div>
-<h1>Login</h1>
-<div class="container">
+<div style="text-align: center;">
+    <h4 class="form-title">Log in to Topick</h4>
+</div>
+
+<div class="container col-sm-6">
     <div class="row">
          <form th:action="@{/login}" method="post">
 
@@ -38,28 +41,30 @@
                  <div class="alert alert-info">You have logged out.</div>
              </div>
 
-             <div class="form-group">
-                 <label for="username">Username: </label>
+             <div class="form-group form-outline mb-4">
+                 <label class="form-header" for="username">Username </label>
                  <input type="text"
                         class="form-control"
                         id="username"
                         name="username"
                         placeholder="Enter username"
-                        autofocus="autofocus">
+                        autofocus="autofocus"
+                        required>
              </div>
 
-             <div class="form-group">
-                 <label for="password">Password: </label>
+             <div class="form-group form-outline mb-4">
+                 <label class="form-header" for="password">Password </label>
                  <input type="password"
                         class="form-control"
                         id="password"
                         name="password"
                         placeholder="Enter password"
-                        autofocus="autofocus">
+                        autofocus="autofocus"
+                        required>
              </div>
 
              <div class="form-group">
-                 <div class="row">
+                 <div class="d-flex justify-content-center">
                      <div class="col-sm-6 col-sm-offset-3">
                          <input type="submit"
                                 name="login-submit"
@@ -71,8 +76,8 @@
              </div>
          </form>
     </div>
-    <div class="form-group">
-        <span>New to Topick? <a href="/" th:href="@{/signup}">Sign Up</a></span>
+    <div class="form-group d-flex justify-content-center">
+        <span style="color:white;">New to Topick?</span>&nbsp;<a href="/" th:href="@{/signup}">Sign Up</a>
     </div>
 </div>
 <!-- JavaScript Bundle with Popper -->

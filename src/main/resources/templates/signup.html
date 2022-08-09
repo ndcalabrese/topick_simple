@@ -18,21 +18,18 @@
 </head>
 <body>
 <div th:replace="fragments/navbar.html :: navbar"></div>
-<br>
-<br>
+<div style="text-align: center;">
+    <h4 class="form-title">Create a Topick Account</h4>
+</div>
 <!-- Account Login Success Message -->
 <div th:if="${param.AccountExists}">
     <div class="alert alert-info">An account already exists with this info</div>
 </div>
-<div class="container">
+<div class="container col-sm-6">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-
-            <h1>Create a Topick Account</h1>
-
             <form th:action="@{/register}" method="post" th:object="${user}">
-                <div class="form-group">
-                    <label class="control-label" for="username">
+                <div class="form-group form-outline mb-4">
+                    <label class="form-header" for="username">
                         Username
                     </label>
                     <input id="username"
@@ -41,8 +38,8 @@
                            required autofocus="autofocus"/>
 
                 </div>
-                <div class="form-group">
-                    <label class="control-label" for="email">
+                <div class="form-group form-outline mb-4">
+                    <label class="form-header" for="email">
                         Email
                     </label>
                     <input id="email"
@@ -51,24 +48,31 @@
                            required autofocus="autofocus"/>
 
                 </div>
-                <div class="form-group">
-                    <label class="control-label" for="password">
+                <div class="form-group form-outline mb-4">
+                    <label class="form-header" for="password">
                         Password
                     </label>
                     <input id="password"
+                           type="password"
                            class="form-control"
                            th:field="*{password}"
                            required autofocus="autofocus"/>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">Register</button>
-                    <span>
-                        Already have a Topick account?
-                        <a href="/" th:href="@{/login}">Log in here</a>
-                    </span>
+                    <div class="d-flex justify-content-center">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit"
+                                   name="signup-submit"
+                                   id="signup-submit"
+                                   class="form-control btn btn-primary"
+                                   value="Sign Up"/>
+                        </div>
+                    </div>
                 </div>
             </form>
-        </div>
+    </div>
+    <div class="form-group d-flex justify-content-center">
+        <span style="color:white;">Already have a Topick account?</span>&nbsp;<a href="/" th:href="@{/login}">Log in</a>
     </div>
 </div>
 

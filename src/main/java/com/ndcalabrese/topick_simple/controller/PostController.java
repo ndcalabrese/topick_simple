@@ -6,10 +6,7 @@ import com.ndcalabrese.topick_simple.model.Comment;
 import com.ndcalabrese.topick_simple.model.Post;
 import com.ndcalabrese.topick_simple.model.Subtopick;
 import com.ndcalabrese.topick_simple.repository.SubtopickRepository;
-import com.ndcalabrese.topick_simple.service.CommentService;
-import com.ndcalabrese.topick_simple.service.PostService;
-import com.ndcalabrese.topick_simple.service.UserService;
-import com.ndcalabrese.topick_simple.service.VoteService;
+import com.ndcalabrese.topick_simple.service.*;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +27,7 @@ public class PostController {
     private final CommentService commentService;
     private final UserService userService;
     private final SubtopickRepository subtopickRepository;
+    private final SubtopickService subtopickService;
     private final VoteService voteService;
 
     @PostMapping("/create")
@@ -56,8 +54,10 @@ public class PostController {
     public String getPostsBySubtopick(@PathVariable Long id, Model model) {
 
         List<Post> posts = postService.getAllPostsBySubtopick(id);
+        Subtopick subtopick = subtopickService.getSubtopickById(id);
 
         model.addAttribute("posts", posts);
+        model.addAttribute("subtopick", subtopick);
 
         return "subtopick";
     }

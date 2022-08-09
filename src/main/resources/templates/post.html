@@ -36,7 +36,7 @@
 <div>
     <h6 class="comments-header p-1" sec:authorize="isAnonymous()">Comments</h6>
     <li class="nav-item" sec:authorize="isAuthenticated()">
-        <a class="navbar-text" th:href="@{'/api/posts/view-post/{id}/comments/create'(id=${post.getPostId()})}">Add a Comment</a>
+        <a class="add-comment-btn" th:href="@{'/api/posts/view-post/{id}/comments/create'(id=${post.getPostId()})}">Add a Comment</a>
     </li>
 </div>
 <div th:replace="fragments/listCommentsForPost.html"></div>

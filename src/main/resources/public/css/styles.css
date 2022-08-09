@@ -19,12 +19,23 @@ body {
     padding-top: 65px;
 }
 
-.navbar-text {
+input[type=submit] {
+    background-color: #00fff2;
+    color: black;
+    border-color: #00fff2;
+}
+
+.navbar-text, .navbar-topick {
     color: #00fff2 !important;
+
 }
 
 .navbar-text:hover {
     color: #FFFFFF !important;
+}
+
+.add-comment-btn {
+    color: #00fff2 !important;
 }
 
 .heading {
@@ -43,6 +54,7 @@ body {
 
 .navbar-topick {
     font-family: 'Pacifico', cursive;
+    padding-left: 30px;
 }
 
 
@@ -94,8 +106,12 @@ body {
     font-size: 16px;
 }
 
-.comments-header, .subtopick-header {
+.comments-header, .subtopick-header, .profile-header {
     color: #00fff2
+}
+
+.profiler-header-white, .profile-username {
+    color: #FFFFFF;
 }
 
 .listall-subtopick-subname {
@@ -110,6 +126,15 @@ body {
 
 .table-header-clear {
     background-color: #10131a !important;
+}
+
+.form-header {
+    color:#00fff2;
+}
+
+.form-title {
+    color:#00fff2;
+    font-family: 'Pacifico', cursive;
 }
 
 #godown {
